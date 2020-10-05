@@ -8,6 +8,8 @@ const rawFlights = require('./lib/rawFlights')
 
 const authentificationKey = process.env.FRAPORT_API_KEY
 let flights = null
+const communications = []
+let currentID = 1
 
 const axiosInstance = axios.create({
   httpsAgent: new https.Agent({
@@ -26,6 +28,22 @@ axiosInstance
 
 app.get('/arrivals', (req, res) => {
   res.send(flights)
+})
+
+app.use(express.json())
+
+app.post('/create', function (req, res) {
+  const communication = {
+    callSign: req.body.callSign,
+    estimated: req.body.estimated,
+    scheduled: req.body.scheduled,
+    requestFuel: false,
+    approveFuelRequest: false,
+    id: currentID,
+  }
+  res.send(communication.id.toString())
+  currentID++
+  communications.push(communication)
 })
 
 app.listen(port, () => {

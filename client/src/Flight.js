@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 export default function Flight({
   from,
@@ -8,6 +9,22 @@ export default function Flight({
   scheduled,
   actual,
 }) {
+  function startCommunication() {
+    axios
+      .post('/create', {
+        callSign: callSign,
+        estimated: estimated,
+        scheduled: scheduled,
+        actual: actual,
+      })
+      .then(function (response) {
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
+
   return (
     <div>
       <table>
@@ -39,6 +56,7 @@ export default function Flight({
           </tr>
         </tbody>
       </table>
+      <button onClick={startCommunication}>Start communication</button>
     </div>
   )
 }
