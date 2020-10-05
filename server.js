@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3001
 const axios = require('axios')
 const https = require('https')
 require('dotenv').config()
@@ -24,7 +24,7 @@ axiosInstance
   })
   .catch((err) => console.log('There was a problem loading flight data.' + err))
 
-app.get('/', (req, res) => {
+app.get('/arrivals', (req, res) => {
   res.send(flights)
 })
 

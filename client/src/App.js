@@ -1,7 +1,8 @@
 import React from 'react'
+import Arrivals from './Arrivals'
 
 function App() {
-  return <h1>groundly</h1>
+  return <Arrivals />
 }
 
 export default App
