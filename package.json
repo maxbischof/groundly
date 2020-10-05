@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/maxbischof/groundly/issues"
   },
-  "homepage": "https://github.com/maxbischof/groundly#readme"
+  "homepage": "https://github.com/maxbischof/groundly#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
