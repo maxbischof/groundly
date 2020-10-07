@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 export default function Flight({
   from,
@@ -9,6 +10,8 @@ export default function Flight({
   scheduled,
   actual,
 }) {
+  let history = useHistory()
+
   function startCommunication() {
     axios
       .post('/create', {
@@ -17,10 +20,10 @@ export default function Flight({
         scheduled: scheduled,
         actual: actual,
       })
-      .then(function (response) {
-        console.log(response)
+      .then((response) => {
+        history.push('/communications/' + response.data)
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error)
       })
   }
