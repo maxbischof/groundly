@@ -46,6 +46,11 @@ app.post('/create', function (req, res) {
   communications.push(communication)
 })
 
+app.get('/communications/:id', (req, res) => {
+  const id = req.params.id
+  res.send(communications.find((communication) => communication.id == id))
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
