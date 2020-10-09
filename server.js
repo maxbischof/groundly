@@ -37,7 +37,7 @@ app.post('/create', function (req, res) {
     callSign: req.body.callSign,
     estimated: req.body.estimated,
     scheduled: req.body.scheduled,
-    requestFuel: false,
+    requestedFuel: false,
     approveFuelRequest: false,
     id: currentID,
   }
@@ -47,8 +47,18 @@ app.post('/create', function (req, res) {
 })
 
 app.get('/communications/:id', (req, res) => {
+  console.log(communications)
   const id = req.params.id
   res.send(communications.find((communication) => communication.id == id))
+})
+
+app.put('/communications/:id', (req, res) => {
+  const id = req.params.id
+  const communication = (communications.find(
+    (communication) => communication.id == id
+  ).requestedFuel = req.body.requestedFuel)
+
+  res.send(communication)
 })
 
 app.listen(port, () => {
